@@ -5,3 +5,6 @@
 // se è > di 5 il quadrato diventa verde.
 // Il numero ottenuto appare al centro
 // del quadrato
+
+// per prima cosa devo crearmi le celle interne alla griglia
+// posso usare un ciclo for e una funzione

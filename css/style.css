@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container_griglia {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+}

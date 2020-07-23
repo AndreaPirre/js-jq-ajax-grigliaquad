@@ -6,16 +6,46 @@
 // Il numero ottenuto appare al centro
 // del quadrato
 
-var lato = 6; // lato griglia
-var gridSize = lato * lato; // dimensione griglia, numero di celle di cui è composta
+// lati della griglia
+var lato = 6;
+// celle interne create da lato * lato
+var gridSize = lato * lato;
 
-// creo la griglia di (side x side) celle
+// creo la griglia di (lato x lato) celle
 creazioneGriglia();
+
+
+
+$('.cella').click(function() {
+
+    var clicked = $(this);
+    var num09 = 'https://flynn.boolean.careers/exercises/api/random/int';
+
+    // chiamata AJAX
+    $.ajax({
+
+        url: num09,
+        // sono io client che richiedo dei dati
+        method: 'GET',
+        // la chiamata è andata bene, utilizzo i dati ritornati
+        success: function(data) {
+            // mi salvo il valore ritornato dalla API
+            var randomNumber = data.response;
+            // chiamo una funzione che utilizza il dato in risposta ricevuto dalla API
+            funCell(clicked, randomNumber);
+        },
+        // qui sotto ci arrivo se la API da' errore
+        error: function(error) {
+            alert("Errore dalla chiamata API");
+        }
+    }); // fine chiamata AJAX
+
+});
+
 
 // |||||||||||||||FUNZIONI|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 // per prima cosa devo crearmi le celle interne alla griglia
-// posso usare un ciclo for e una funzione
 
 function creazioneGriglia() {
 
@@ -25,5 +55,19 @@ function creazioneGriglia() {
     for (var i = 0; i < gridSize; i++) {
 
         $('.container_griglia').append(gridCell);
+    }
+}
+
+
+function funCell(clickedCell, randomNum) {
+
+
+    $(clickedCell).html(randomNum);
+
+
+    if (randomNum <= 5) {
+        $(clickedCell).addClass('giallo').removeClass('verde');
+    } else {
+        $(clickedCell).addClass('verde').removeClass('giallo');
     }
 }
